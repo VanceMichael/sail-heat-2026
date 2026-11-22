@@ -1,0 +1,117 @@
+{
+  "stages": {
+    "before-recall": [
+      {
+        "path": "/shore/exports",
+        "body": [
+          {
+            "station": "T",
+            "boot": "A",
+            "offset": 4,
+            "error": 2,
+            "file": "/shore/observations"
+          }
+        ]
+      },
+      {
+        "path": "/shore/photo?id=v3",
+        "body": {
+          "error": "请用索引查询"
+        },
+        "status": 404
+      },
+      {
+        "path": "/jury/receipts",
+        "body": [
+          {
+            "receipt": "doc1",
+            "person": "P",
+            "heat": "H1",
+            "state": "signed"
+          },
+          {
+            "receipt": "docK",
+            "person": "V",
+            "heat": "H3",
+            "state": "signed"
+          }
+        ]
+      }
+    ],
+    "recalled": [
+      {
+        "path": "/shore/exports",
+        "body": [
+          {
+            "station": "T",
+            "boot": "A",
+            "offset": -3,
+            "error": 5,
+            "file": "/shore/observations"
+          }
+        ]
+      },
+      {
+        "path": "/shore/photo",
+        "body": {
+          "error": "只保留识别索引"
+        },
+        "query": {
+          "id": "v3"
+        },
+        "status": 410
+      },
+      {
+        "path": "/jury/claims",
+        "body": [
+          {
+            "claim": "E1",
+            "heat": "H1",
+            "person": "P",
+            "receipt": "doc1",
+            "state": "open"
+          }
+        ]
+      },
+      {
+        "path": "/jury/corrections",
+        "body": {
+          "correction": "C1",
+          "state": "received"
+        },
+        "method": "POST",
+        "payload": {
+          "receipt": "doc1"
+        },
+        "status": 202
+      }
+    ],
+    "ruling": [
+      {
+        "path": "/jury/receipts",
+        "body": [
+          {
+            "receipt": "doc1",
+            "person": "P",
+            "heat": "H1",
+            "state": "challenged",
+            "correction": "C1"
+          },
+          {
+            "receipt": "docK",
+            "person": "V",
+            "heat": "H3",
+            "state": "signed"
+          }
+        ]
+      }
+    ]
+  },
+  "common": [
+    {
+      "path": "/shore/observations",
+      "body": null,
+      "file": "shore-t.gz"
+    }
+  ]
+}
