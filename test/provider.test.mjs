@@ -19,8 +19,7 @@ import { gunzipSync } from 'node:zlib'
 test('召回后同一识别包有不同现场锚点，异议只作用已签名单项', async t => {
   const root = await listen(t)
   const pack = Buffer.from(await (await fetch(root + '/shore/observations')).arrayBuffer())
-  assert.equal(JSON.parse(gunzipSync(pack).toString().split('
-')[0]).local, 62)
+  assert.equal(JSON.parse(gunzipSync(pack).toString().split('\n')[0]).local, 62)
   await post(root, '/lab?stage=recalled')
   assert.equal((await (await fetch(root + '/shore/exports')).json())[0].error, 5)
   assert.equal((await fetch(root + '/shore/photo?id=v3')).status, 410)
