@@ -14,11 +14,14 @@
         ]
       },
       {
-        "path": "/shore/photo?id=v3",
+        "path": "/shore/photo",
         "body": {
           "error": "请用索引查询"
         },
-        "status": 404
+        "query": {
+          "id": "v3"
+        },
+        "file": "v3.png"
       },
       {
         "path": "/jury/receipts",
@@ -84,6 +87,14 @@
           "receipt": "doc1"
         },
         "status": 202
+      },
+      {
+        "path": "/shore/photo",
+        "body": null,
+        "file": "v7.png",
+        "query": {
+          "id": "v7"
+        }
       }
     ],
     "ruling": [
@@ -104,6 +115,36 @@
             "state": "signed"
           }
         ]
+      },
+      {
+        "path": "/shore/exports",
+        "body": [
+          {
+            "station": "T",
+            "boot": "A",
+            "offset": -3,
+            "error": 5,
+            "file": "/shore/observations"
+          }
+        ]
+      },
+      {
+        "path": "/shore/photo",
+        "body": {
+          "error": "只保留识别索引"
+        },
+        "query": {
+          "id": "v3"
+        },
+        "status": 410
+      },
+      {
+        "path": "/shore/photo",
+        "body": null,
+        "file": "v7.png",
+        "query": {
+          "id": "v7"
+        }
       }
     ]
   },
